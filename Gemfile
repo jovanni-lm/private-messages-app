@@ -52,3 +52,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'twitter-bootstrap-rails', '~> 4.0'
+gem 'haml-rails', '~> 0.9'
+gem 'simple_form', '~> 3.4'
