@@ -32,7 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       t.string :username
       t.boolean :admin
-      t.boolean :blecked
+      t.boolean :blocked
 
       t.timestamps null: false
     end

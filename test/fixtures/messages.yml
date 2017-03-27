@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyText
+  body: MyString
+  dialog: 
   read: false
-  dialog_id: one
 
 two:
-  body: MyText
+  body: MyString
+  dialog: 
   read: false
-  dialog_id: two

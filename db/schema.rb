@@ -10,24 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323202101) do
+ActiveRecord::Schema.define(version: 20170327205036) do
 
   create_table "dialogs", force: :cascade do |t|
-    t.integer  "sender_id_id"
-    t.integer  "recipient_id_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["recipient_id_id"], name: "index_dialogs_on_recipient_id_id"
-    t.index ["sender_id_id"], name: "index_dialogs_on_sender_id_id"
+    t.integer  "sender"
+    t.integer  "recipient"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text     "body"
+    t.string   "body"
+    t.integer  "dialog_id"
     t.boolean  "read"
-    t.integer  "dialog_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["dialog_id_id"], name: "index_messages_on_dialog_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dialog_id"], name: "index_messages_on_dialog_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170323202101) do
     t.string   "last_sign_in_ip"
     t.string   "username"
     t.boolean  "admin"
-    t.boolean  "blecked"
+    t.boolean  "blocked"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true

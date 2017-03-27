@@ -1,3 +1,3 @@
 class Message < ApplicationRecord
-  belongs_to :dialog_id
+  belongs_to :dialog
 end
