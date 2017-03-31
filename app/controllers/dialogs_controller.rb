@@ -6,4 +6,8 @@ class DialogsController < ApplicationController
   def create
 
   end
+
+  def show
+    @dialog = Dialog.find(params[:id])
+  end
 end

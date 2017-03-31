@@ -1,0 +1,4 @@
+- MessageDecorator.decorate_collection(@dialog.messages).each do |message|
+  %ul{class: 'list-unstyled'}
+    %li
+      = message.show

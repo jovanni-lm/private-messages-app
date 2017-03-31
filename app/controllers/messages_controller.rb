@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+
+
   def new
     @message_dialog_form = MessageDialogForm.new
   end

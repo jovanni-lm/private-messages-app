@@ -7,11 +7,15 @@ Rails.application.routes.draw do
 
   devise_for :users
   devise_scope :user do
+    get '/login' => 'devise/sessions#new'
+    get '/logout' => 'devise/sessions#destroy'
+
+    get 'sign_in', to: 'devise/sessions#new'
     authenticated :user do
       root :to => 'users#index'
     end
     unauthenticated :user do
-      root :to => 'devise/registrations#new', as: :unauthenticated_root
+      root :to => 'devise/sessions#new', as: :unauthenticated_root
     end
   end
 
@@ -23,7 +27,8 @@ Rails.application.routes.draw do
   #
   # root 'users/sessions#new'
 
-  match '/users/:id', to: 'users#show', as: :user, via: :get
+  # match '/users/:id', to: 'users#show', as: :user, via: :get
 
-  resource :messages
+  resources :users
+  resources :messages, only: [:new, :create]
 end

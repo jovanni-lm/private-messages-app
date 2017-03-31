@@ -2,8 +2,8 @@ class CreateMessages < ActiveRecord::Migration[5.0]
   def change
     create_table :messages do |t|
       t.string :body
-      t.references :dialog
-      t.boolean :read
+      t.references :dialog, index: true, foreign_key: true
+      t.boolean :read, default: false
 
       t.timestamps
     end

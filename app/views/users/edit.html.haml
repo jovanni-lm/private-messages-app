@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    .row
+      %span{class: 'col-md-6'} Edit User
+      %span{class: 'col-md-6 text-right'}= @user.delete_link
+  .panel-body
+    = render 'form'

@@ -1,3 +1,13 @@
 .row
   .col-md-8.col-md-offset-2
-    .message.form= render 'messages/form'
+    .panel.panel-default
+      .panel-heading
+        .row
+          %span{class: 'col-md-6'} Dialog with #{@user.username}
+          %span{class: 'col-md-6 text-right'}= @user.edit_link
+      .panel-body
+        - if @dialog.present?
+          = render template: 'dialogs/show'
+        - else
+          %p There are not messages, start your dialog now!
+        .message.form= render 'messages/form'

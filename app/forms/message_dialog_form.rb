@@ -22,7 +22,12 @@ class MessageDialogForm
   private
 
   def persist!
-    dialog = Dialog.find_or_create_by(sender: sender, recipient: recipient)
-    @message = dialog.messages.create!(body: body)
+    sender_user, recipient_user = User.find(sender), User.find(recipient)
+
+    dialog = ([sender_user.dialogs, recipient_user.dialogs].inject(:&)).first
+
+    dialog = Dialog.create!(users: [sender_user, recipient_user]) unless dialog.present?
+
+    dialog.messages.create!(body: body, user: sender_user, recipient: recipient_user)
   end
 end

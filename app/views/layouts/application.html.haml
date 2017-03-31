@@ -19,19 +19,19 @@
 
 
   %body
-    .navbar.navbar-default.navbar-static-top
-      .container
-        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.navbar-brand(href='/') Home
-        .navbar-collapse.collapse.navbar-responsive-collapse
-          %ul.nav.navbar-nav
-            %li{role: 'presentation'}= link_to ('Messages ' + content_tag(:span, 42, class: 'badge')).html_safe, '/'
-            %li{role: 'presentation'}= link_to 'Check Messages', '/'
-
-
+    - if user_signed_in?
+      .navbar.navbar-default.navbar-static-top
+        .container
+          %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand(href='/') Home
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            %ul.nav.navbar-nav
+              = MessagesCounter.new(current_user).html
+              %li{role: 'presentation'}= link_to 'Check Messages', '/'
+              %li{role: 'presentation'}= link_to 'Edit My Profile', edit_user_path(current_user)
 
     .container
       .row
