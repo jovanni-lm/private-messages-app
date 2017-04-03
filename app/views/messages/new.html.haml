@@ -1,0 +1,6 @@
+.message.form
+  = simple_form_for MessageDialogForm.new, url: messages_path, html: { class: 'form-horizontal' } do |f|
+    = f.input :body, as: :text, label: 'Message', input_html: { class: 'form-control', autofocus: true, rows: 3 }
+    = f.hidden_field :sender, value: current_user.id
+    = f.hidden_field :recipient, value: user.id
+    = f.button :submit, 'Send Message', class: 'btn-primary'

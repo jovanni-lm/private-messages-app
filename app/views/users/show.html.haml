@@ -6,8 +6,9 @@
           %span{class: 'col-md-6'} Dialog with #{@user.username}
           %span{class: 'col-md-6 text-right'}= @user.edit_link
       .panel-body
-        - if @dialog.present?
-          = render template: 'dialogs/show'
-        - else
-          %p There are not messages, start your dialog now!
-        .message.form= render 'messages/form'
+        .messages-list{ "data-spy": "scroll", "data-offset": '20' }
+          - if @dialog.present?
+            = render template: 'dialogs/show'
+          - else
+            %p There are not messages, start your dialog now!
+        .message.form= render template: 'messages/new', locals: { user: @user }

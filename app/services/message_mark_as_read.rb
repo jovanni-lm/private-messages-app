@@ -7,9 +7,6 @@ class MessageMarkAsRead
   end
 
   def mark_as_read!
-    if !message.read? && !message.is_user_author?(user)
-      message.read = true
-      message.save
-    end
+    message.read! if !message.read? && !message.is_user_author?(user)
   end
 end

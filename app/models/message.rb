@@ -11,7 +11,11 @@ class Message < ApplicationRecord
     read
   end
 
+  def read!
+    update_attribute(:read, true)
+  end
+
   scope :unread_messages, lambda { |account|
-    where(read: false, recipient_id: account.id)
+    where(read: false, recipient_id: account)
   }
 end

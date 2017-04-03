@@ -5,9 +5,8 @@ class Ability
     if user.admin
       can :manage, :all
     else
-      can :read, :all
+      can :read, User, blocked: false
       can :update, User, id: user.id
-      cannot :show, User, blocked: true
     end
 
     cannot :show, User, id: user.id

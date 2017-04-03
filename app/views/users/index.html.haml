@@ -3,4 +3,4 @@
     %h3.panel-title Users
   .panel-body
     - @users.each do |user|
-      %p= link_to user.username, user_path(user)
+      %p= user.show_link

@@ -11,20 +11,17 @@ class MessageDialogForm
   validates :body, :sender, :recipient, presence: true
 
   def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
+    return false unless valid?
+    persist!
   end
 
   private
 
   def persist!
-    sender_user, recipient_user = User.find(sender), User.find(recipient)
+    sender_user = User.find(sender)
+    recipient_user = User.find(recipient)
 
-    dialog = ([sender_user.dialogs, recipient_user.dialogs].inject(:&)).first
+    dialog = [sender_user.dialogs, recipient_user.dialogs].inject(:&).first
 
     dialog = Dialog.create!(users: [sender_user, recipient_user]) unless dialog.present?
 

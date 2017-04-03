@@ -17,7 +17,6 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
 
-
   %body
     - if user_signed_in?
       .navbar.navbar-default.navbar-static-top
@@ -29,9 +28,11 @@
           %a.navbar-brand(href='/') Home
           .navbar-collapse.collapse.navbar-responsive-collapse
             %ul.nav.navbar-nav
-              = MessagesCounter.new(current_user).html
-              %li{role: 'presentation'}= link_to 'Check Messages', '/'
+              %li{id: 'msg-counter'}= MessagesCounter.new(UserNewMessages, current_user).html
+              %li{role: 'presentation'}= link_to 'Check Messages', { controller: 'users', action: 'message_counter', format: :js }, id: 'check-messages', remote: true
+              %li= User.new.decorate.new_link
               %li{role: 'presentation'}= link_to 'Edit My Profile', edit_user_path(current_user)
+              %li= link_to 'Logout', destroy_user_session_path, method: :delete
 
     .container
       .row
